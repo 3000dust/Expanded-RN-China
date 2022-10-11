@@ -10,7 +10,7 @@
 
 
 ###prerequisite packages
-requiredPackages = c('dplyr','ggplot2','scales','cowplot','here','curl')
+requiredPackages = c('dplyr','ggplot2','scales','cowplot','here','curl','lubridate')
 
 for(packages in requiredPackages){
   
@@ -61,7 +61,7 @@ ninja_get_china_solar = function(lat, lon, from, to, dataset='merra2', capacity=
 ### Match provinces according to its latitude and longitude
 ### Geodata from: https://www.distancelatlong.com/distancecalculator/country/china
 
-province_list <- read.csv('Provinces_LatLong.csv')
+province_list <- read.csv(file.path(here(), 'Expanded-RN/Provinces_LatLong.csv'))
 
 
 ## one function that can get the china's provincial level profile

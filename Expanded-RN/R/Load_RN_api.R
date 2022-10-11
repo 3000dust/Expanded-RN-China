@@ -37,8 +37,8 @@ library(here)
 here()
 Dir_path <- file.path(here())
 ## Source the ninja automator and my built function for China
-source(file.path(Dir_path, 'R/ninja_automator.r'))
-source(file.path(Dir_path, 'R/Renewables_Ninja_China.r'))
+source(file.path(Dir_path, 'Expanded-RN/R/ninja_automator.r'))
+source(file.path(Dir_path, 'Expanded-RN/R/Renewables_Ninja_China.r'))
 
 # insert your API authorization token here
 token = '2a623b67d5ba8df8b78a9b97308c24e16a4c77e6'
@@ -66,9 +66,9 @@ ninja_plot_china_capacity_factor('Jilin', '2023-01-01', '2023-01-15', 'solar')
 
 
 ## Let's start with a sample csv file selected from GEM wind data
-farms = read.csv(file.path(Dir_path, 'R/Sample_Data/GEM_Liaoning_sample_wind.csv'))
+farms = read.csv(file.path(Dir_path, 'Expanded-RN/R/Sample_Data/GEM_Liaoning_sample_wind.csv'))
 
-ninja_aggregate_china(farms, '2022-01-01', '2022-01-02', 'wind')
+ninja_aggregate_china(farms, '2022-01-01', '2022-01-01', 'wind')
 ## This function will give a dataframe with all profiles in the selected from-to time
 ## Due to the api request limit, this function does not work so well on grabbing profiles from a list
 ## I would suggest use this small tool only quickly generate provincial profiles (method 1)

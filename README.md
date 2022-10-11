@@ -17,7 +17,7 @@ This small tool is an extension to the Renewables Ninja api for quickly generati
 
 2. `ninja_plot_china_capacity_factor(province = 'Province', from ='from date', to ='to date', technology = 'wind or solar', innovation_rate= 'technology innovation rate')` is the function to plot the capacity factors time series in selected province and from-to time.
 
-3. `ninja_aggregate_china(fgenerator_list = 'generators', from = 'from date', to = 'to date, technology = 'wind or solar', innovation_rate= 'technology innovation rate)')` is the function for getting a list of generators' capacity factors.
+3. `ninja_aggregate_china(generator_list = 'generators', from = 'from date', to = 'to date, technology = 'wind or solar', innovation_rate= 'technology innovation rate)')` is the function for getting a list of generators' capacity factors.
 
     Note that due to the request limit of the API, the 3rd function is currently only capable of small-scale data scraping, and I still recommend using the first 2 functions for quick profile simulations.
 

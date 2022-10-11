@@ -23,6 +23,8 @@ This small tool is an extension to the Renewables Ninja api for quickly generati
 
 > Some other notes:
 
+   In Renewables Ninja, data is available before 2020-12-31. To simulate profile after 2020-12-31, I used a technology innovation rate to reflect the annual technology innovation. The default rate in the function is 0.02 and can be adjusted in the function by setting `innovation_rate = 'rate'`. The profile will be generated from multiplied by `(1+rate)^(year gap)` according to its corresponding profile in 2020 date.
+
    The default dataset used for simulating is [MERRA-2](https://gmao.gsfc.nasa.gov/reanalysis/MERRA-2/).
 
    The geographic data of the Chinese provinces comes from [Distancelatlong](https://www.distancelatlong.com/distancecalculator/country/china).

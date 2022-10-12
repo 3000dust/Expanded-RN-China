@@ -54,12 +54,13 @@ handle_setheaders(h, 'Authorization'=paste('Token ', token))
 
 ## Note that RN can only generate the profile before 2021-01-01, please use the time 
 # Function input: province, from, to, technology
-ninja_get_china_capacity_factor('Liaoning', '2021-01-01', '2021-01-05', 'wind')
+ninja_get_china_capacity_factor('Jilin', '2021-10-01', '2021-11-01', 'wind', innovation_rate = 0)
 # ninja_get_china_capacity_factor(province = 'Tianjin', from ='2020-01-01', to ='2020-02-01', technology = 'wind')
-ninja_plot_china_capacity_factor('Jilin', '2023-01-01', '2023-01-15', 'solar')
+ninja_plot_china_capacity_factor('Jilin', '2021-10-01', '2021-11-01', 'wind', innovation_rate = 0)
 # ninja_plot_china_capacity_factor(province = 'Tianjin', from ='2020-01-01', to ='2020-02-01', technology = 'solar')
 
-
+z = ninja_get_china_capacity_factor('Liaoning', '2021-10-01', '2021-11-01', 'solar', innovation_rate = 0)
+mean(z$electricity)###Check the average capacity factors
 #####
 ## ##  Method 2. Using a list of information to generate profiles
 #####

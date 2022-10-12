@@ -68,10 +68,17 @@ province_list <- read.csv(file.path(here(), 'Expanded-RN/Provinces_LatLong.csv')
 
 
 ## The following 2 functions (end with _quick) doesn't consider the future years after 2020
+
 ninja_get_china_capacity_factor_quick = function(province, from, to, technology)
 {
-  lat = as.numeric(province_list[province_list$Provinces == province,][,2])   
-  lon = as.numeric(province_list[province_list$Provinces == province,][,3])
+  if (technology == 'wind') {
+    lat = as.numeric(province_list[province_list$Provinces == province,][,colnames(province_list) == c('Latitude_w')])   
+    lon = as.numeric(province_list[province_list$Provinces == province,][,colnames(province_list) == c('Longitude_w')])
+  } else if (technology == 'solar') {
+    lat = as.numeric(province_list[province_list$Provinces == province,][,colnames(province_list) == c('Latitude_s')])   
+    lon = as.numeric(province_list[province_list$Provinces == province,][,colnames(province_list) == c('Longitude_s')])
+  }
+
   if (technology == 'wind'){
     result_UTC = ninja_get_china_wind(lat, lon, from, to, dataset='merra2',
                                       capacity=1, height=80, turbine='Vestas+V90+2000', raw='false')
@@ -89,8 +96,14 @@ ninja_get_china_capacity_factor_quick = function(province, from, to, technology)
 
 ninja_plot_china_capacity_factor_quick = function(province, from, to, technology)
 {
-  lat = as.numeric(province_list[province_list$Provinces == province,][,2])   
-  lon = as.numeric(province_list[province_list$Provinces == province,][,3])
+  if (technology == 'wind') {
+    lat = as.numeric(province_list[province_list$Provinces == province,][,colnames(province_list) == c('Latitude_w')])   
+    lon = as.numeric(province_list[province_list$Provinces == province,][,colnames(province_list) == c('Longitude_w')])
+  } else if (technology == 'solar') {
+    lat = as.numeric(province_list[province_list$Provinces == province,][,colnames(province_list) == c('Latitude_s')])   
+    lon = as.numeric(province_list[province_list$Provinces == province,][,colnames(province_list) == c('Longitude_s')])
+  }
+  
   if (technology == 'wind'){
     result_UTC = ninja_get_china_wind(lat, lon, from, to, dataset='merra2',
                                       capacity=1, height=80, turbine='Vestas+V90+2000', raw='false')

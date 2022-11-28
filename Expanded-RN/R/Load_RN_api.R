@@ -54,7 +54,7 @@ handle_setheaders(h, 'Authorization'=paste('Token ', token))
 
 ## Note that RN can only generate the profile before 2021-01-01, please use the time 
 # Function input: province, from, to, technology
-ninja_get_china_capacity_factor('Jilin', '2021-10-01', '2021-11-01', 'wind', innovation_rate = 0)
+ninja_get_china_capacity_factor('Heilongjiang', '2022-12-01', '2022-12-31', 'wind', innovation_rate = 0)
 # ninja_get_china_capacity_factor(province = 'Tianjin', from ='2020-01-01', to ='2020-02-01', technology = 'wind')
 ninja_plot_china_capacity_factor('Jilin', '2021-10-01', '2021-11-01', 'wind', innovation_rate = 0)
 # ninja_plot_china_capacity_factor(province = 'Tianjin', from ='2020-01-01', to ='2020-02-01', technology = 'solar')
@@ -74,4 +74,25 @@ ninja_aggregate_china(farms, '2022-01-01', '2022-01-01', 'wind')
 ## Due to the api request limit, this function does not work so well on grabbing profiles from a list
 ## I would suggest use this small tool only quickly generate provincial profiles (method 1)
 
+HL_122022_WIND <- ninja_get_china_capacity_factor('Heilongjiang', '2022-12-01', '2022-12-31', 'wind', innovation_rate = 0) %>%
+  rename('HL_WIND' = 'electricity')
+IM_122022_WIND <- ninja_get_china_capacity_factor('Inner Mongolia', '2022-12-01', '2022-12-31', 'wind', innovation_rate = 0) %>%
+  rename('IM_WIND' = 'electricity')
+JL_122022_WIND <- ninja_get_china_capacity_factor('Jilin', '2022-12-01', '2022-12-31', 'wind', innovation_rate = 0) %>%
+  rename('JL_WIND' = 'electricity')
+LN_122022_WIND <- ninja_get_china_capacity_factor('Liaoning', '2022-12-01', '2022-12-31', 'wind', innovation_rate = 0) %>%
+  rename('LN_WIND' = 'electricity')
 
+HL_122022_SOLAR <- ninja_get_china_capacity_factor('Heilongjiang', '2022-12-01', '2022-12-31', 'solar', innovation_rate = 0) %>%
+  rename('HL_SOLAR' = 'electricity')
+IM_122022_SOLAR <- ninja_get_china_capacity_factor('Inner Mongolia', '2022-12-01', '2022-12-31', 'solar', innovation_rate = 0) %>%
+  rename('IM_SOLAR' = 'electricity')
+JL_122022_SOLAR <- ninja_get_china_capacity_factor('Jilin', '2022-12-01', '2022-12-31', 'solar', innovation_rate = 0) %>%
+  rename('JL_SOLAR' = 'electricity')
+LN_122022_SOLAR <- ninja_get_china_capacity_factor('Liaoning', '2022-12-01', '2022-12-31', 'solar', innovation_rate = 0) %>%
+  rename('LN_SOLAR' = 'electricity')
+
+output <- cbind(HL_122022_WIND, IM_122022_WIND, JL_122022_WIND, LN_122022_WIND,
+                HL_122022_SOLAR, IM_122022_SOLAR, JL_122022_SOLAR, LN_122022_SOLAR)
+
+write.csv(output, 'Dec_2022_RE_CF.csv',fileEncoding = "UTF-8", row.names = FALSE)
